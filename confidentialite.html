@@ -1,0 +1,391 @@
+<title>Confidentialité Roundo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+<style>
+  /* La palette de Roundo. En clair pour le web, où l'on lit un document ;
+     en sombre, exactement celle de l'app — même noir verdi, même vert. */
+  :root {
+    --ground: #fbfcfb;
+    --surface: #f1f4f2;
+    --ink: #131816;
+    --ink-soft: #5d6664;
+    --accent: #17a97a;
+    --rule: #dde3e0;
+    --shade: #eef2f0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #131816;
+      --surface: #1f2624;
+      --ink: #f1f4f2;
+      --ink-soft: #979c9a;
+      --accent: #2acb96;
+      --rule: #323535;
+      --shade: #1a201e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #131816;
+    --surface: #1f2624;
+    --ink: #f1f4f2;
+    --ink-soft: #979c9a;
+    --accent: #2acb96;
+    --rule: #323535;
+    --shade: #1a201e;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 24px 96px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .page { max-width: 40rem; margin: 0 auto; }
+
+  header { padding: 72px 0 8px; }
+  .eyebrow {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: clamp(2rem, 6vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0 0 10px;
+  }
+  .date {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* Le résumé : ce qu'on retient si on ne lit rien d'autre. */
+  .essentiel {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin: 36px 0 8px;
+  }
+  .essentiel h2 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 12px;
+  }
+  .essentiel ul { margin: 0; padding-left: 20px; }
+  .essentiel li { margin-bottom: 7px; }
+  .essentiel li:last-child { margin-bottom: 0; }
+
+  h2.section {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 1.32rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    text-wrap: balance;
+    margin: 52px 0 14px;
+    padding-top: 26px;
+    border-top: 1px solid var(--rule);
+  }
+  h3 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 28px 0 8px;
+  }
+  p { margin: 0 0 16px; }
+  strong { font-weight: 600; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+
+  /* Une table de données doit défiler seule, jamais la page. */
+  .tableau { overflow-x: auto; margin: 20px 0 24px; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 32rem;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 14px;
+  }
+  th, td {
+    text-align: left;
+    vertical-align: top;
+    padding: 11px 14px 11px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  th {
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom-color: var(--ink-soft);
+  }
+  td:first-child { font-weight: 600; white-space: nowrap; padding-right: 22px; }
+  td { color: var(--ink-soft); }
+  td:first-child { color: var(--ink); }
+
+  /* Ce qui mérite d'être remarqué : un filet vert, pas un encadré criard. */
+  .note {
+    border-left: 3px solid var(--accent);
+    background: var(--shade);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-size: 16px;
+  }
+  .note p:last-child { margin-bottom: 0; }
+
+  .aremplir {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--accent);
+    color: var(--ground);
+    padding: 1px 7px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  /* Le sélecteur de langue : deux mots, pas un menu. */
+  .langues {
+    display: flex;
+    gap: 2px;
+    background: var(--surface);
+    border-radius: 999px;
+    padding: 3px;
+    margin: 0 0 30px;
+    width: fit-content;
+  }
+  .langues button {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    border: 0;
+    background: transparent;
+    color: var(--ink-soft);
+    padding: 6px 15px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .langues button[aria-pressed="true"] {
+    background: var(--accent);
+    color: var(--ground);
+  }
+  .langues button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  [lang="en"] { display: none; }
+  :root[data-langue="en"] [lang="fr"] { display: none; }
+  :root[data-langue="en"] [lang="en"] { display: revert; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="page">
+  <header>
+    <p class="eyebrow">Roundo</p>
+    <h1 lang="fr">Politique de confidentialité</h1>
+    <h1 lang="en">Privacy Policy</h1>
+    <p class="date" lang="fr">Dernière mise à jour : 9 septembre 2026</p>
+    <p class="date" lang="en">Last updated: 9 September 2026</p>
+  </header>
+
+  <div class="langues" role="group" aria-label="Langue / Language">
+    <button type="button" data-l="fr" aria-pressed="true">Français</button>
+    <button type="button" data-l="en" aria-pressed="false">English</button>
+  </div>
+
+  <!-- ================================ FRANÇAIS ================================ -->
+  <div lang="fr">
+    <div class="essentiel">
+      <h2>L'essentiel</h2>
+      <ul>
+        <li>Roundo ne vend rien, ne diffuse aucune publicité et n'utilise <strong>aucun traceur</strong> ni outil de mesure d'audience.</li>
+        <li>Aucune donnée bancaire, aucune géolocalisation, aucun identifiant publicitaire.</li>
+        <li>Une adresse e-mail est <strong>facultative</strong> : elle ne sert qu'à retrouver un compte.</li>
+        <li>Ce que tu notes n'est visible que de <strong>toi et de l'ami concerné</strong>.</li>
+      </ul>
+    </div>
+
+    <h2 class="section">Qui est responsable</h2>
+    <p>Roundo est édité par Julien Billou. Pour toute question sur tes données, ou pour exercer les droits décrits plus bas, écris à <a href="mailto:contact@roundo.fr">contact@roundo.fr</a>.</p>
+
+    <h2 class="section">Ce que Roundo enregistre</h2>
+    <p>Roundo existe pour tenir le compte de ce que des amis se doivent. Tout ce qui suit sert à ça, et rien d'autre.</p>
+
+    <div class="tableau">
+      <table>
+        <thead>
+          <tr><th>Donnée</th><th>Pourquoi</th><th>Qui la voit</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Prénom, nom</td><td>T'identifier auprès de tes amis</td><td>Toi et les amis reliés à ton compte</td></tr>
+          <tr><td>Photo de profil</td><td>Facultative — te reconnaître d'un coup d'œil</td><td>Voir l'avertissement ci-dessous</td></tr>
+          <tr><td>Couleur</td><td>Facultative — ta pastille quand tu n'as pas de photo</td><td>Tes amis reliés</td></tr>
+          <tr><td>Adresse e-mail</td><td>Facultative — retrouver ton compte sur un autre téléphone</td><td>Toi seul. Aucun ami ne la voit.</td></tr>
+          <tr><td>Additions</td><td>Titre, total, date, convives et parts</td><td>Toi et les convives reliés</td></tr>
+          <tr><td>Ardoises</td><td>Soldes, remboursements, annulations, contestations</td><td>Toi et l'ami concerné, personne d'autre</td></tr>
+          <tr><td>Code personnel</td><td>Huit caractères, pour qu'un ami puisse demander un lien</td><td>Ceux à qui tu le donnes</td></tr>
+          <tr><td>Jeton de notification</td><td>Envoyer une alerte quand quelque chose te concerne</td><td>Personne — il ne sert qu'à l'envoi</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Roundo n'enregistre <strong>aucune donnée bancaire</strong>, ne suit aucune position, n'utilise aucun identifiant publicitaire, et ne mesure pas ton usage de l'application.</p>
+
+    <div class="note">
+      <p><strong>Un point à connaître sur les photos de profil.</strong> Elles sont hébergées à une adresse publique, longue et impossible à deviner, pour pouvoir s'afficher chez tes amis sans négociation. Quiconque obtiendrait cette adresse pourrait voir la photo. Si cela te gêne, ne mets pas de photo : la pastille de couleur remplit le même rôle.</p>
+    </div>
+
+    <h2 class="section">Ce que tes amis voient</h2>
+    <p>Une ardoise est strictement <strong>bilatérale</strong> : elle ne concerne que deux personnes, et Roundo ne compense jamais une dette à travers un tiers. Un ami relié voit vos additions communes, vos mouvements et votre solde — jamais tes ardoises avec quelqu'un d'autre.</p>
+    <p>Un ami que tu n'as pas relié n'existe que sur ton téléphone : il ne voit rien, et n'est prévenu de rien.</p>
+
+    <h2 class="section">Qui héberge, et où</h2>
+    <p>Les données sont hébergées par <strong>Supabase</strong> (base de données et fichiers), en <strong>France</strong> (région AWS Paris, <em>eu-west-3</em>). Les notifications passent par le <strong>service de notification d'Expo</strong>, qui reçoit un jeton d'appareil et le texte de l'alerte. L'envoi des codes par e-mail passe par un service d'envoi tiers.</p>
+    <p>Aucun de ces prestataires n'est autorisé à se servir de tes données pour autre chose que la fourniture du service.</p>
+
+    <h2 class="section">Combien de temps</h2>
+    <p>Tes données restent tant que ton compte existe. Le journal d'une ardoise est <strong>définitif par construction</strong> : une dette s'annule par une écriture supplémentaire, elle ne s'efface pas. C'est ce qui garantit que deux téléphones montrent la même chose.</p>
+    <p>Tu peux effacer un ami qui n'a pas relié de compte, et l'application supprime alors ses données chez toi.</p>
+
+    <h2 class="section">Tes droits</h2>
+    <p>Conformément au RGPD, tu peux demander l'accès à tes données, leur rectification, leur effacement, la limitation de leur traitement, et leur portabilité. Tu peux aussi t'opposer à un traitement.</p>
+    <p>Écris à l'adresse de contact ci-dessus. Tu peux également saisir la <a href="https://www.cnil.fr">CNIL</a> si tu estimes que tes droits ne sont pas respectés.</p>
+    <p>La suppression complète d'un compte se demande par écrit à cette même adresse ; elle est effectuée sous trente jours.</p>
+
+    <h2 class="section">Les enfants</h2>
+    <p>Roundo ne s'adresse pas aux enfants de moins de 13 ans et ne collecte pas sciemment leurs données.</p>
+
+    <h2 class="section">Les changements</h2>
+    <p>Si cette politique change, la date en haut de page change avec elle. Un changement important sera signalé dans l'application.</p>
+  </div>
+
+  <!-- ================================ ENGLISH ================================= -->
+  <div lang="en">
+    <div class="essentiel">
+      <h2>The short version</h2>
+      <ul>
+        <li>Roundo sells nothing, shows no ads, and uses <strong>no trackers</strong> or analytics of any kind.</li>
+        <li>No payment details, no location, no advertising identifier.</li>
+        <li>An email address is <strong>optional</strong>: it only serves to recover an account.</li>
+        <li>What you record is visible to <strong>you and the friend concerned</strong>, nobody else.</li>
+      </ul>
+    </div>
+
+    <h2 class="section">Who is responsible</h2>
+    <p>Roundo is published by Julien Billou. For any question about your data, or to exercise the rights described below, write to <a href="mailto:contact@roundo.fr">contact@roundo.fr</a>.</p>
+
+    <h2 class="section">What Roundo records</h2>
+    <p>Roundo exists to keep track of what friends owe each other. Everything below serves that, and nothing else.</p>
+
+    <div class="tableau">
+      <table>
+        <thead>
+          <tr><th>Data</th><th>Why</th><th>Who sees it</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>First and last name</td><td>To identify you to your friends</td><td>You and friends linked to your account</td></tr>
+          <tr><td>Profile photo</td><td>Optional — to recognise you at a glance</td><td>See the warning below</td></tr>
+          <tr><td>Colour</td><td>Optional — your badge when you have no photo</td><td>Your linked friends</td></tr>
+          <tr><td>Email address</td><td>Optional — to recover your account on another phone</td><td>You only. No friend ever sees it.</td></tr>
+          <tr><td>Bills</td><td>Name, total, date, people and splits</td><td>You and the linked people on them</td></tr>
+          <tr><td>Tabs</td><td>Balances, paybacks, forgiven debts, disputes</td><td>You and that one friend, nobody else</td></tr>
+          <tr><td>Personal code</td><td>Eight characters, so a friend can request a link</td><td>Whoever you give it to</td></tr>
+          <tr><td>Notification token</td><td>To alert you when something concerns you</td><td>Nobody — it only serves the sending</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Roundo records <strong>no payment details</strong>, tracks no location, uses no advertising identifier, and does not measure how you use the app.</p>
+
+    <div class="note">
+      <p><strong>One thing to know about profile photos.</strong> They are hosted at a public address — long and impossible to guess — so they can appear on your friends' phones without negotiation. Anyone who obtained that address could see the photo. If that bothers you, don't set one: the coloured badge does the same job.</p>
+    </div>
+
+    <h2 class="section">What your friends see</h2>
+    <p>A tab is strictly <strong>between two people</strong>. Roundo never settles a debt through a third person. A linked friend sees the bills you share, your entries and your balance — never your tabs with anyone else.</p>
+    <p>A friend you haven't linked exists only on your phone: they see nothing and are told nothing.</p>
+
+    <h2 class="section">Where it is hosted</h2>
+    <p>Data is hosted by <strong>Supabase</strong> (database and files), in <strong>France</strong> (AWS Paris region, <em>eu-west-3</em>). Notifications go through <strong>Expo's push service</strong>, which receives a device token and the text of the alert. Email codes are sent through a third-party mail service.</p>
+    <p>None of these providers is allowed to use your data for anything other than providing the service.</p>
+
+    <h2 class="section">How long</h2>
+    <p>Your data stays as long as your account exists. A tab's ledger is <strong>final by design</strong>: a debt is undone by an additional entry, never erased. That is what guarantees two phones show the same thing.</p>
+    <p>You can delete a friend who hasn't linked an account, and the app then removes their data on your side.</p>
+
+    <h2 class="section">Your rights</h2>
+    <p>Under the GDPR you may request access to your data, its correction, its erasure, the restriction of its processing, and its portability. You may also object to a processing.</p>
+    <p>Write to the contact address above. You may also refer the matter to your national data protection authority — in France, the <a href="https://www.cnil.fr">CNIL</a>.</p>
+    <p>Full account deletion is requested in writing at that same address, and carried out within thirty days.</p>
+
+    <h2 class="section">Children</h2>
+    <p>Roundo is not directed at children under 13 and does not knowingly collect their data.</p>
+
+    <h2 class="section">Changes</h2>
+    <p>If this policy changes, the date at the top changes with it. A significant change will be flagged inside the app.</p>
+  </div>
+
+  <footer>
+    <p lang="fr">Roundo · © 2026 Julien Billou</p>
+    <p lang="en">Roundo · © 2026 Julien Billou</p>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var racine = document.documentElement;
+    var boutons = document.querySelectorAll('.langues button');
+
+    function poser(l) {
+      racine.setAttribute('data-langue', l);
+      boutons.forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.dataset.l === l));
+      });
+      try { localStorage.setItem('roundo.confidentialite.langue', l); } catch (e) {}
+    }
+
+    var choisie = 'fr';
+    try {
+      var garde = localStorage.getItem('roundo.confidentialite.langue');
+      if (garde === 'fr' || garde === 'en') { choisie = garde; }
+      else if ((navigator.language || '').slice(0, 2) === 'en') { choisie = 'en'; }
+    } catch (e) {
+      if ((navigator.language || '').slice(0, 2) === 'en') { choisie = 'en'; }
+    }
+    poser(choisie);
+
+    boutons.forEach(function (b) {
+      b.addEventListener('click', function () { poser(b.dataset.l); });
+    });
+  })();
+</script>

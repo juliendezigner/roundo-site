@@ -1,0 +1,363 @@
+<title>Aide Roundo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+<style>
+  /* La palette de Roundo. En clair pour le web, où l'on lit un document ;
+     en sombre, exactement celle de l'app — même noir verdi, même vert. */
+  :root {
+    --ground: #fbfcfb;
+    --surface: #f1f4f2;
+    --ink: #131816;
+    --ink-soft: #5d6664;
+    --accent: #17a97a;
+    --rule: #dde3e0;
+    --shade: #eef2f0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #131816;
+      --surface: #1f2624;
+      --ink: #f1f4f2;
+      --ink-soft: #979c9a;
+      --accent: #2acb96;
+      --rule: #323535;
+      --shade: #1a201e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #131816;
+    --surface: #1f2624;
+    --ink: #f1f4f2;
+    --ink-soft: #979c9a;
+    --accent: #2acb96;
+    --rule: #323535;
+    --shade: #1a201e;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 24px 96px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .page { max-width: 40rem; margin: 0 auto; }
+
+  header { padding: 72px 0 8px; }
+  .eyebrow {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: clamp(2rem, 6vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0 0 10px;
+  }
+  .date {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* Le résumé : ce qu'on retient si on ne lit rien d'autre. */
+  .essentiel {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin: 36px 0 8px;
+  }
+  .essentiel h2 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 12px;
+  }
+  .essentiel ul { margin: 0; padding-left: 20px; }
+  .essentiel li { margin-bottom: 7px; }
+  .essentiel li:last-child { margin-bottom: 0; }
+
+  h2.section {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 1.32rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    text-wrap: balance;
+    margin: 52px 0 14px;
+    padding-top: 26px;
+    border-top: 1px solid var(--rule);
+  }
+  h3 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 28px 0 8px;
+  }
+  p { margin: 0 0 16px; }
+  strong { font-weight: 600; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+
+  /* Une table de données doit défiler seule, jamais la page. */
+  .tableau { overflow-x: auto; margin: 20px 0 24px; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 32rem;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 14px;
+  }
+  th, td {
+    text-align: left;
+    vertical-align: top;
+    padding: 11px 14px 11px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  th {
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom-color: var(--ink-soft);
+  }
+  td:first-child { font-weight: 600; white-space: nowrap; padding-right: 22px; }
+  td { color: var(--ink-soft); }
+  td:first-child { color: var(--ink); }
+
+  /* Ce qui mérite d'être remarqué : un filet vert, pas un encadré criard. */
+  .note {
+    border-left: 3px solid var(--accent);
+    background: var(--shade);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-size: 16px;
+  }
+  .note p:last-child { margin-bottom: 0; }
+
+  .aremplir {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--accent);
+    color: var(--ground);
+    padding: 1px 7px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  /* Le sélecteur de langue : deux mots, pas un menu. */
+  .langues {
+    display: flex;
+    gap: 2px;
+    background: var(--surface);
+    border-radius: 999px;
+    padding: 3px;
+    margin: 0 0 30px;
+    width: fit-content;
+  }
+  .langues button {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    border: 0;
+    background: transparent;
+    color: var(--ink-soft);
+    padding: 6px 15px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .langues button[aria-pressed="true"] {
+    background: var(--accent);
+    color: var(--ground);
+  }
+  .langues button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  [lang="en"] { display: none; }
+  :root[data-langue="en"] [lang="fr"] { display: none; }
+  :root[data-langue="en"] [lang="en"] { display: revert; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="page">
+
+  <header>
+    <p class="eyebrow" lang="fr">Roundo · Aide</p>
+    <p class="eyebrow" lang="en">Roundo · Help</p>
+    <h1 lang="fr">Aide et contact</h1>
+    <h1 lang="en">Help &amp; contact</h1>
+    <p class="date" lang="fr">Mise à jour le 17 septembre 2026</p>
+    <p class="date" lang="en">Updated 17 September 2026</p>
+  </header>
+
+  <div class="langues">
+    <button type="button" data-l="fr" aria-pressed="true">Français</button>
+    <button type="button" data-l="en" aria-pressed="false">English</button>
+  </div>
+
+  <div lang="fr">
+    <div class="essentiel">
+      <h2>Une question ?</h2>
+      <p>Écris à <a href="mailto:contact@roundo.fr">contact@roundo.fr</a>. Une vraie personne lit, et répond en général sous deux jours.</p>
+      <p>Dis-nous ce que tu faisais, ce que tu attendais, et ce qui s'est passé à la place. C'est ce qui permet de comprendre du premier coup.</p>
+    </div>
+
+    <h2 class="section">Questions fréquentes</h2>
+
+    <h3>Comment ajouter un ami ?</h3>
+    <p>Trois chemins, et ils mènent au même endroit. Scanner son QR code, lui envoyer le tien, ou taper son code dans la barre de recherche des ardoises. Un code n'ouvre rien tout seul : il <strong>envoie une demande</strong>, que ton ami accepte ou laisse passer.</p>
+
+    <h3>Mon ami n'a pas installé Roundo. Ça marche quand même ?</h3>
+    <p>Oui. Tu peux noter des additions avec quelqu'un qui n'a pas l'app : sa fiche n'existe alors que sur ton téléphone. Le jour où il installe Roundo, tu peux rattacher la fiche à son compte, et tout ce que vous aviez noté devient commun.</p>
+
+    <h3>Je me suis trompé dans une addition.</h3>
+    <p>Si c'est toi qui l'as notée, tu peux la modifier ou l'annuler. Si c'est ton ami, tu peux la <strong>contester</strong> : il le voit, et c'est à lui de corriger. Une contestation ne déplace aucun montant — elle signale un désaccord, elle ne tranche pas à ta place.</p>
+    <p>Rien ne s'efface jamais. Une correction s'écrit comme une ligne de plus, visible des deux côtés.</p>
+
+    <h3>Je change de téléphone. Je perds mes ardoises ?</h3>
+    <p>Pas si tu as rattaché une adresse e-mail à ton compte. Sur le nouveau téléphone, choisis « J'ai déjà un compte », entre ton adresse, et tout revient.</p>
+    <p>Sans adresse, un compte ne vit que sur son téléphone. C'est pour ça que l'app te propose d'en ajouter une dès que tu as quelque chose à perdre.</p>
+
+    <h3>Pourquoi dois-je créer un compte pour me relier à quelqu'un ?</h3>
+    <p>Parce que sans compte, ton téléphone perdu emporte tes ardoises — et celles de l'ami relié à toi. Il garderait une fiche pointant vers un compte que personne ne peut plus ouvrir, sans pouvoir l'effacer ni la remplacer. Tant que tu es seul, ce risque n'engage que toi ; te relier le rend contagieux.</p>
+
+    <h3>C'est quoi, une « tournée » ?</h3>
+    <p>Ce que coûte une soirée à une personne, en moyenne, sur cette ardoise-là. Roundo la déduit de vos sorties passées — vous n'avez pas à l'estimer, et comme vos deux téléphones lisent le même journal, vous trouvez la même valeur.</p>
+
+    <h3>Roundo peut-il envoyer de l'argent ?</h3>
+    <p>Non, et ce n'est pas prévu. Pas de paiement, pas de virement, aucun compte bancaire à relier. Roundo tient le compte, vous vous occupez du reste.</p>
+
+    <h3>Comment effacer un ami, ou mes données ?</h3>
+    <p>Une personne qui n'a pas relié de compte s'efface depuis sa fiche. Ses additions ne disparaissent pas : elles sont <strong>allégées</strong> de sa part, pour que les ardoises des autres convives ne bougent pas.</p>
+    <p>Pour effacer ton compte et tout ce qu'il contient, écris-nous à l'adresse ci-dessus.</p>
+
+    <h3>Les notifications ne me parviennent pas.</h3>
+    <p>Roundo ne demande la permission qu'à partir du moment où tu as un ami relié — avant, personne ne peut rien écrire qui te concerne. Si tu l'as refusée, iOS ne repose jamais la question : il faut la réactiver dans Réglages › Roundo › Notifications.</p>
+
+    <h2 class="section">Signaler un problème</h2>
+    <p>Un calcul qui semble faux, une dette qui n'arrive pas en face, un écran qui se bloque : écris-nous. Précise si possible la version de l'app, lisible en bas de l'écran Compte.</p>
+
+    <div class="note">
+      <p><strong>Un montant qui ne tombe pas juste ?</strong> Ouvre l'addition et déroule « Vérifier le calcul ». Roundo y montre d'où vient chaque centime, y compris celui qui ne tombait pas rond. Si le compte n'y est toujours pas, c'est exactement le genre de chose qu'on veut savoir.</p>
+    </div>
+
+    <h2 class="section">Autres pages</h2>
+    <p><a href="https://claude.ai/code/artifact/909d7ecb-71eb-42f2-839f-7c5089c0c7f9">Politique de confidentialité</a> — ce que Roundo enregistre, et ce qu'il n'enregistre pas.</p>
+    <p>Les licences des bibliothèques utilisées se lisent dans l'app, en bas de l'écran Compte.</p>
+  </div>
+
+  <div lang="en">
+    <div class="essentiel">
+      <h2>A question?</h2>
+      <p>Write to <a href="mailto:contact@roundo.fr">contact@roundo.fr</a>. A real person reads it, and usually replies within two days.</p>
+      <p>Tell us what you were doing, what you expected, and what happened instead. That's what makes it understandable first time.</p>
+    </div>
+
+    <h2 class="section">Common questions</h2>
+
+    <h3>How do I add a friend?</h3>
+    <p>Three ways, all leading to the same place. Scan their QR code, send them yours, or type their code into the search bar on the Tabs screen. A code never opens anything by itself: it <strong>sends a request</strong>, which your friend accepts or ignores.</p>
+
+    <h3>My friend hasn't installed Roundo. Does it still work?</h3>
+    <p>Yes. You can record bills with someone who doesn't have the app — their record then lives only on your phone. The day they install Roundo, you can attach that record to their account, and everything you'd noted becomes shared.</p>
+
+    <h3>I made a mistake on a bill.</h3>
+    <p>If you wrote it, you can edit or cancel it. If your friend wrote it, you can <strong>dispute</strong> it: they see it, and it's theirs to fix. A dispute moves no money — it flags a disagreement, it doesn't decide for you.</p>
+    <p>Nothing is ever erased. A correction is written as one more line, visible on both sides.</p>
+
+    <h3>I'm changing phones. Will I lose my tabs?</h3>
+    <p>Not if you've added an email address to your account. On the new phone, choose “I already have an account”, enter your address, and everything comes back.</p>
+    <p>Without an address, an account only lives on its phone. That's why the app offers to add one as soon as you have something to lose.</p>
+
+    <h3>Why do I need an account to link with someone?</h3>
+    <p>Because without one, a lost phone takes your tabs with it — and your linked friend's too. They'd be left with a record pointing at an account nobody can open, unable to delete or replace it. While you're on your own that risk is yours alone; linking makes it contagious.</p>
+
+    <h3>What is a “round”?</h3>
+    <p>What a night out costs one person, on average, on that particular tab. Roundo works it out from your past outings — you never have to estimate it, and since both phones read the same ledger, you both get the same figure.</p>
+
+    <h3>Can Roundo send money?</h3>
+    <p>No, and it isn't planned. No payments, no transfers, no bank account to connect. Roundo keeps the count, you handle the rest.</p>
+
+    <h3>How do I delete a friend, or my data?</h3>
+    <p>Someone who hasn't linked an account can be deleted from their record. Their bills don't disappear: they're <strong>lightened</strong> by that person's split, so the other people's tabs don't move.</p>
+    <p>To delete your account and everything in it, write to us at the address above.</p>
+
+    <h3>I'm not getting notifications.</h3>
+    <p>Roundo only asks for permission once you have a linked friend — before that, nobody can write anything that concerns you. If you declined, iOS never asks again: turn it back on in Settings › Roundo › Notifications.</p>
+
+    <h2 class="section">Reporting a problem</h2>
+    <p>A total that looks wrong, a debt that doesn't reach the other side, a screen that freezes: write to us. Include the app version if you can — it's at the bottom of the Account screen.</p>
+
+    <div class="note">
+      <p><strong>An amount that doesn't add up?</strong> Open the bill and expand “Check the maths”. Roundo shows where every cent comes from, including the one that wouldn't divide evenly. If it still doesn't add up, that's exactly the kind of thing we want to hear about.</p>
+    </div>
+
+    <h2 class="section">Other pages</h2>
+    <p><a href="https://claude.ai/code/artifact/909d7ecb-71eb-42f2-839f-7c5089c0c7f9">Privacy policy</a> — what Roundo records, and what it doesn't.</p>
+    <p>Licences for the libraries used are in the app, at the bottom of the Account screen.</p>
+  </div>
+
+  <footer>
+    <p lang="fr">Roundo · © 2026 Julien Billou</p>
+    <p lang="en">Roundo · © 2026 Julien Billou</p>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var racine = document.documentElement;
+    var boutons = document.querySelectorAll('.langues button');
+
+    function poser(l) {
+      racine.setAttribute('data-langue', l);
+      boutons.forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.dataset.l === l));
+      });
+      try { localStorage.setItem('roundo.support.langue', l); } catch (e) {}
+    }
+
+    var choisie = 'fr';
+    try {
+      var garde = localStorage.getItem('roundo.support.langue');
+      if (garde === 'fr' || garde === 'en') { choisie = garde; }
+      else if ((navigator.language || '').slice(0, 2) === 'en') { choisie = 'en'; }
+    } catch (e) {
+      if ((navigator.language || '').slice(0, 2) === 'en') { choisie = 'en'; }
+    }
+    poser(choisie);
+
+    boutons.forEach(function (b) {
+      b.addEventListener('click', function () { poser(b.dataset.l); });
+    });
+  })();
+</script>
