@@ -121,6 +121,13 @@
   ol li { margin-bottom: 8px; }
   ol li::marker { color: var(--accent); font-weight: 600; }
 
+  /* Le chemin de secours se lit après l'autre, et se voit moins. */
+  .repli {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 14px 0 0;
+  }
+
   .boutons { margin: 30px 0 0; display: flex; flex-direction: column; gap: 12px; }
   .bouton {
     display: block;
@@ -224,19 +231,27 @@
     </button>
   </div>
 
+  <!-- L'ÉTAPE 3 ÉVITE DE RECOPIER HUIT CARACTÈRES. Une fois l'app installée,
+       le même lien ne mène plus ici : le téléphone reconnaît le domaine et
+       ouvre Roundo, le code déjà écrit dans le champ. Reste donc à le dire —
+       sans quoi personne n'a de raison de revenir sur un lien qu'il a déjà
+       suivi. La saisie à la main reste écrite en dessous, pour l'ordinateur
+       et pour le message qu'on a effacé. -->
   <div lang="fr">
     <ol>
       <li>Installe Roundo.</li>
       <li>Ouvre l’app et crée ton compte.</li>
-      <li>Saisis le code ci-dessus dans la barre de recherche, puis envoie ta demande.</li>
+      <li>Reviens sur ce lien : le code se remplira tout seul.</li>
     </ol>
+    <p class="repli">Ou saisis le code ci-dessus dans la barre de recherche de l’app, puis envoie ta demande.</p>
   </div>
   <div lang="en">
     <ol>
       <li>Install Roundo.</li>
       <li>Open the app and create your account.</li>
-      <li>Enter the code above in the search bar, then send your request.</li>
+      <li>Come back to this link: the code fills itself in.</li>
     </ol>
+    <p class="repli">Or type the code above into the app’s search bar, then send your request.</p>
   </div>
 
   <div class="boutons" id="boutons"></div>
