@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["4W85U7H8R5.com.juliendesign.roundo"],
+        "components": [
+          {
+            "/": "/rejoindre*",
+            "comment": "L'invitation : le seul chemin que l'app revendique. Tout le reste du site — l'accueil, l'aide, la confidentialite, les mentions legales — doit s'ouvrir dans le navigateur, y compris chez quelqu'un qui a l'app."
+          }
+        ]
+      }
+    ]
+  }
+}
