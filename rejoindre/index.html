@@ -1,0 +1,365 @@
+<title>Rejoindre un ami sur Roundo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+<style>
+  /* La même palette que les autres pages du site. */
+  :root {
+    --ground: #fbfcfb;
+    --surface: #f1f4f2;
+    --ink: #131816;
+    --ink-soft: #5d6664;
+    --accent: #17a97a;
+    --rule: #dde3e0;
+    --shade: #eef2f0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #131816;
+      --surface: #1f2624;
+      --ink: #f1f4f2;
+      --ink-soft: #979c9a;
+      --accent: #2acb96;
+      --rule: #323535;
+      --shade: #1a201e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #131816;
+    --surface: #1f2624;
+    --ink: #f1f4f2;
+    --ink-soft: #979c9a;
+    --accent: #2acb96;
+    --rule: #323535;
+    --shade: #1a201e;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 24px 96px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .page { max-width: 34rem; margin: 0 auto; }
+
+  header { padding: 72px 0 8px; text-align: center; }
+  .marque { width: 52px; height: auto; display: block; margin: 0 auto 24px; }
+  .eyebrow {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: clamp(1.8rem, 6vw, 2.3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0 0 12px;
+  }
+  .baseline { color: var(--ink-soft); margin: 0; }
+
+  /* LE CODE EST LE SUJET DE LA PAGE : c'est lui qu'on est venu chercher, et
+     c'est lui qu'il faudra retaper dans l'app. Il tient donc la place d'un
+     titre, en chiffres alignés, sélectionnable d'un geste. */
+  .bloc-code {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 26px 20px 22px;
+    margin: 34px 0 0;
+    text-align: center;
+  }
+  .etiquette {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
+  }
+  .code {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: clamp(1.9rem, 9vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    font-variant-numeric: tabular-nums;
+    margin: 0;
+    user-select: all;
+    -webkit-user-select: all;
+  }
+  .copier {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--ink);
+    padding: 9px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    margin-top: 16px;
+  }
+  .copier:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  ol {
+    padding-left: 1.2em;
+    margin: 30px 0 0;
+  }
+  ol li { margin-bottom: 8px; }
+  ol li::marker { color: var(--accent); font-weight: 600; }
+
+  .boutons { margin: 30px 0 0; display: flex; flex-direction: column; gap: 12px; }
+  .bouton {
+    display: block;
+    text-align: center;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 14px;
+    background: var(--accent);
+    color: var(--ground);
+  }
+  .bouton.contour {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+  }
+  /* Tant que l'app n'est pas publiée, le magasin n'a rien à montrer. On le
+     dit, plutôt que de mener à une page d'erreur. */
+  .bientot {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--ink-soft);
+    border: 1px dashed var(--rule);
+    border-radius: 14px;
+    padding: 15px 20px;
+  }
+
+  .langues {
+    display: flex;
+    gap: 2px;
+    background: var(--surface);
+    border-radius: 999px;
+    padding: 3px;
+    margin: 34px auto 0;
+    width: fit-content;
+  }
+  .langues button {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    border: 0;
+    background: transparent;
+    color: var(--ink-soft);
+    padding: 6px 15px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .langues button[aria-pressed="true"] { background: var(--accent); color: var(--ground); }
+  .langues button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  footer a { color: var(--ink-soft); }
+
+  [lang="en"] { display: none; }
+  :root[data-langue="en"] [lang="fr"] { display: none; }
+  :root[data-langue="en"] [lang="en"] { display: revert; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="page">
+  <header>
+    <svg class="marque" viewBox="180 116 664 792" role="img" aria-label="Roundo">
+      <defs>
+        <linearGradient id="vert" x1="180" y1="512" x2="844" y2="512" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#2aca95"/>
+          <stop offset="1" stop-color="#58f2a9"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#vert)" d="M810.67,881.54l-79.84-103.21-2.69-3.46-8.75-11.35-7.5-9.62,14.23-11.06-.35-.49c7.21-5.04,14.3-10.5,21.03-16.42,1.33-1.09,2.6-2.16,3.83-3.28,128.51-114.36,124.2-321.94-9.9-472.5-37.98-42.66-82.54-76.4-130.42-99.32C562.44,127.9,511.29,115.65,460.16,115.65c-71.36,0-136.22,24.19-187.57,69.83-1.36,1.17-2.71,2.39-3.99,3.65-57.15,52.83-88.55,126.55-89.27,208.82h-.06v491.9c0,9.76,7.91,17.67,17.67,17.67h117.62c9.76,0,17.67-7.91,17.67-17.67v-184.34c.43.33.74.5.74.5v-314.2c2.32-32.48,15.71-63.38,44.21-88.83,24.68-22,55.67-33.53,89.63-33.53,53.7,0,109.71,29.86,158.03,84.03,40.41,45.4,63.3,93.94,66.31,140.35,2.88,44.72-12.75,84.62-43.94,112.4-2.9,2.58-5.89,5.02-8.98,7.24h-.06c-1.01.81-2.03,1.6-3,2.24-17.28,13.79-36.87,4.16-51.36-7.59l-.14-.11-121.88-117.36c-5.8-6.62-13.2-4.82-15.36-4.02-2.12.75-9.14,3.75-9.6,12.62l.21,385.52c-.31,5.68,1.69,11.47,5.79,15.77,4.06,4.44,9.63,6.87,15.66,7.03h343.4c9.07.51,12.65-6.58,13.5-8.55.87-2.03,3.41-9.25-2.88-15.65l-1.34-1.62Z"/>
+    </svg>
+    <p class="eyebrow" lang="fr">Invitation</p>
+    <p class="eyebrow" lang="en">Invitation</p>
+    <h1 lang="fr">Quelqu’un veut se relier à toi sur Roundo</h1>
+    <h1 lang="en">Someone wants to link with you on Roundo</h1>
+    <p class="baseline" lang="fr">Le partage d’addition entre amis, tourné vers la réciprocité plutôt que vers le remboursement.</p>
+    <p class="baseline" lang="en">Splitting the bill between friends, built around giving back rather than paying back.</p>
+  </header>
+
+  <div class="bloc-code" id="bloc-code" hidden>
+    <p class="etiquette" lang="fr">Son code</p>
+    <p class="etiquette" lang="en">Their code</p>
+    <p class="code" id="code"></p>
+    <button type="button" class="copier" id="copier">
+      <span lang="fr">Copier le code</span>
+      <span lang="en">Copy code</span>
+    </button>
+  </div>
+
+  <div lang="fr">
+    <ol>
+      <li>Installe Roundo.</li>
+      <li>Ouvre l’app et crée ton compte.</li>
+      <li>Saisis le code ci-dessus dans la barre de recherche, puis envoie ta demande.</li>
+    </ol>
+  </div>
+  <div lang="en">
+    <ol>
+      <li>Install Roundo.</li>
+      <li>Open the app and create your account.</li>
+      <li>Enter the code above in the search bar, then send your request.</li>
+    </ol>
+  </div>
+
+  <div class="boutons" id="boutons"></div>
+
+  <div class="langues" role="group" aria-label="Langue / Language">
+    <button type="button" data-l="fr" aria-pressed="true">Français</button>
+    <button type="button" data-l="en" aria-pressed="false">English</button>
+  </div>
+
+  <footer>
+    <p lang="fr">
+      <a href="/">Roundo</a> · <a href="/support.html">Aide</a> ·
+      <a href="/confidentialite.html">Confidentialité</a>
+    </p>
+    <p lang="en">
+      <a href="/">Roundo</a> · <a href="/support.html">Help</a> ·
+      <a href="/confidentialite.html">Privacy</a>
+    </p>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var racine = document.documentElement;
+
+    /* LES DEUX MAGASINS, ET CE QU'ON EN SAIT AUJOURD'HUI.
+       L'adresse de Google Play se déduit du nom du paquet : elle est donc
+       juste d'avance. Celle de l'App Store demande un identifiant NUMÉRIQUE
+       qu'Apple n'attribue qu'à la création de la fiche — tant qu'il vaut null,
+       on affiche « bientôt » plutôt que de mener à une page d'erreur.
+       Le jour venu : une seule ligne à changer ici. */
+    var APP_STORE_ID = null;
+    var PLAY_URL = 'https://play.google.com/store/apps/details?id=com.juliendesign.roundo';
+
+    /* Le code, tel qu'il arrive dans l'adresse. On ne garde que l'alphabet des
+       codes — le même qu'en face, sans O ni 0 ni I ni 1 — ce qui écarte du
+       même coup tout ce qu'on aurait pu glisser dans le paramètre. */
+    var brut = new URLSearchParams(location.search).get('code') || '';
+    var code = brut.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8);
+    var complet = /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{8}$/.test(code);
+
+    if (complet) {
+      document.getElementById('code').textContent = code.slice(0, 4) + '-' + code.slice(4);
+      document.getElementById('bloc-code').hidden = false;
+    }
+
+    var copier = document.getElementById('copier');
+    copier.addEventListener('click', function () {
+      var dit = function (fr, en) {
+        copier.innerHTML =
+          '<span lang="fr">' + fr + '</span><span lang="en">' + en + '</span>';
+      };
+      try {
+        navigator.clipboard.writeText(code).then(
+          function () { dit('Copié', 'Copied'); },
+          function () { dit('Sélectionne le code', 'Select the code'); }
+        );
+      } catch (e) {
+        dit('Sélectionne le code', 'Select the code');
+      }
+    });
+
+    /* CHAQUE TÉLÉPHONE VOIT SON MAGASIN, et un ordinateur les voit tous les
+       deux : sur iPhone, proposer Google Play serait une porte qui ne s'ouvre
+       pas. */
+    var ua = navigator.userAgent || '';
+    var pomme = /iPhone|iPad|iPod/.test(ua);
+    var robot = /Android/.test(ua);
+    var boutons = document.getElementById('boutons');
+
+    function porte(html) {
+      var d = document.createElement('div');
+      d.innerHTML = html;
+      boutons.appendChild(d.firstElementChild);
+    }
+
+    if (!robot) {
+      if (APP_STORE_ID) {
+        porte('<a class="bouton" href="https://apps.apple.com/app/id' + APP_STORE_ID +
+              '"><span lang="fr">Télécharger sur l’App Store</span>' +
+              '<span lang="en">Download on the App Store</span></a>');
+      } else {
+        porte('<p class="bientot"><span lang="fr">Bientôt sur l’App Store</span>' +
+              '<span lang="en">Coming soon to the App Store</span></p>');
+      }
+    }
+    if (!pomme) {
+      // Plein sur Android, en contour ailleurs : sur un ordinateur, le bouton
+      // de l'App Store est déjà passé devant.
+      porte('<a class="bouton' + (robot ? '' : ' contour') + '" href="' + PLAY_URL +
+            '"><span lang="fr">Télécharger sur Google Play</span>' +
+            '<span lang="en">Get it on Google Play</span></a>');
+    }
+
+    /* EN SECOURS, et seulement là : si l'app est installée, ce lien ne s'est
+       jamais affiché — le téléphone l'aura ouverte avant d'atteindre cette
+       page. Il sert à qui l'a installée entre-temps, et à qui l'ouvre depuis
+       un navigateur qui ne suit pas les liens universels. */
+    if ((pomme || robot) && complet) {
+      porte('<a class="bouton contour" href="roundo://rejoindre?code=' + code +
+            '"><span lang="fr">J’ai déjà Roundo</span>' +
+            '<span lang="en">I already have Roundo</span></a>');
+    }
+
+    var langues = document.querySelectorAll('.langues button');
+    function poser(l) {
+      racine.setAttribute('data-langue', l);
+      langues.forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.dataset.l === l));
+      });
+      try { localStorage.setItem('roundo.accueil.langue', l); } catch (e) {}
+    }
+    var choisie = 'fr';
+    try {
+      var garde = localStorage.getItem('roundo.accueil.langue');
+      if (garde === 'fr' || garde === 'en') { choisie = garde; }
+      else if ((navigator.language || '').slice(0, 2) === 'en') { choisie = 'en'; }
+    } catch (e) {
+      if ((navigator.language || '').slice(0, 2) === 'en') { choisie = 'en'; }
+    }
+    poser(choisie);
+    langues.forEach(function (b) {
+      b.addEventListener('click', function () { poser(b.dataset.l); });
+    });
+  })();
+</script>
