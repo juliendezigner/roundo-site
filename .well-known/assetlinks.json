@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.juliendesign.roundo",
+      "sha256_cert_fingerprints": [
+        "03:15:36:20:FC:D5:4F:D8:2A:74:73:89:ED:FC:38:D5:16:84:4E:1B:A8:AE:AB:2C:A7:60:EF:64:59:A1:73:16"
+      ]
+    }
+  }
+]
