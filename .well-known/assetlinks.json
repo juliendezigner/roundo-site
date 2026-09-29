@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.juliendesign.roundo",
       "sha256_cert_fingerprints": [
-        "03:15:36:20:FC:D5:4F:D8:2A:74:73:89:ED:FC:38:D5:16:84:4E:1B:A8:AE:AB:2C:A7:60:EF:64:59:A1:73:16"
+        "03:15:36:20:FC:D5:4F:D8:2A:74:73:89:ED:FC:38:D5:16:84:4E:1B:A8:AE:AB:2C:A7:60:EF:64:59:A1:73:16",
+        "07:0E:9A:9E:46:93:9B:A4:10:4B:4E:AE:DB:74:C7:FD:2B:D0:61:3D:0C:AF:01:21:ED:F9:CF:20:80:4F:BD:62"
       ]
     }
   }
