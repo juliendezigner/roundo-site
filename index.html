@@ -40,7 +40,7 @@
     background: var(--ground);
     color: var(--ink);
     font-family: 'General Sans', system-ui, -apple-system, sans-serif;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.65;
     margin: 0;
     padding: 0 24px 96px;
@@ -218,6 +218,26 @@
     margin: 0 0 30px;
     max-width: 30rem;
   }
+  /* LE SEUL BOUTON DU SITE, et il ne mène pas à un magasin : il mène à
+     /telecharger, qui sait reconnaître le téléphone. Renvoyer directement
+     vers l'App Store depuis ici obligerait à refaire cette reconnaissance
+     une seconde fois, et à la corriger à deux endroits le jour où une
+     adresse de magasin change. */
+  .telecharger {
+    display: block;
+    text-align: center;
+    font-family: 'General Sans', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 14px;
+    background: var(--accent);
+    color: var(--ground);
+    margin: 20px 0 0;
+  }
+  .telecharger:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
   .liens {
     display: flex;
     flex-wrap: wrap;
@@ -258,6 +278,8 @@
       <h2>Ce que fait Roundo</h2>
       <p>Roundo note qui a payé la dernière fois, et le rappelle à la prochaine sortie. Une ardoise par ami, un partage au centime, et personne qui fait les comptes à la fin de la soirée.</p>
     </div>
+    <a class="telecharger" href="/telecharger">Télécharger Roundo</a>
+
     <nav class="liens">
       <a href="/support.html">Aide et contact</a>
       <a href="/confidentialite.html">Confidentialité</a>
@@ -271,6 +293,8 @@
       <h2>What Roundo does</h2>
       <p>Roundo remembers who paid last time, and brings it up the next time you go out. One tab per friend, split to the cent, and nobody doing sums at the end of the night.</p>
     </div>
+    <a class="telecharger" href="/telecharger">Download Roundo</a>
+
     <nav class="liens">
       <a href="/support.html">Help &amp; contact</a>
       <a href="/confidentialite.html">Privacy</a>
