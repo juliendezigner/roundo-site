@@ -113,6 +113,16 @@
   }
   p { margin: 0 0 16px; }
   strong { font-weight: 600; }
+
+  /* La seule liste de la page : les deux chemins vers les réglages de
+     notification. Le retrait du navigateur vaut quarante pixels, ce qui la
+     décrocherait des paragraphes voisins ; 1,2 em la cale sur eux, comme la
+     liste de rejoindre.html. La puce prend l'accent, parce qu'un gris de plus
+     sur une page qui en compte déjà trois ne distinguerait rien. */
+  ul { margin: 0 0 16px; padding-left: 1.2em; }
+  li { margin-bottom: 6px; }
+  li:last-child { margin-bottom: 0; }
+  li::marker { color: var(--accent); }
   a { color: var(--accent); text-underline-offset: 2px; }
 
   /* Une table de données doit défiler seule, jamais la page. */
@@ -264,7 +274,12 @@
     <p>Ce que tes amis ont déjà reçu reste chez eux : leur solde ne change pas, et une soirée qu'ils ont vécue ne s'efface pas de leur journal. Leur ardoise indique simplement « compte supprimé », et elle cesse de se synchroniser.</p>
 
     <h3>Les notifications ne me parviennent pas.</h3>
-    <p>Roundo ne demande la permission qu'à partir du moment où tu as un ami relié — avant, personne ne peut rien écrire qui te concerne. Si tu l'as refusée, iOS ne repose jamais la question : il faut la réactiver dans Réglages › Roundo › Notifications.</p>
+    <p>Roundo ne demande la permission qu'à partir du moment où tu as un ami relié — avant, personne ne peut rien écrire qui te concerne.</p>
+    <p>Si tu l'as refusée, la question ne se repose pas d'elle-même : il faut la réactiver dans les réglages du téléphone.</p>
+    <ul>
+      <li><strong>iPhone</strong> — Réglages › Roundo › Notifications</li>
+      <li><strong>Android</strong> — Paramètres › Applications › Roundo › Notifications. Le chemin exact change un peu selon la marque du téléphone ; cherche Roundo dans la liste des applications.</li>
+    </ul>
 
     <h2 class="section">Signaler un problème</h2>
     <p>Un calcul qui semble faux, une dette qui n'arrive pas en face, un écran qui se bloque : écris-nous. Précise si possible la version de l'app, lisible en bas de l'écran Compte.</p>
@@ -318,7 +333,12 @@
     <p>What your friends have already received stays with them: their balance doesn't change, and a night out they lived through isn't erased from their ledger. Their tab simply reads "account deleted", and stops syncing.</p>
 
     <h3>I'm not getting notifications.</h3>
-    <p>Roundo only asks for permission once you have a linked friend — before that, nobody can write anything that concerns you. If you declined, iOS never asks again: turn it back on in Settings › Roundo › Notifications.</p>
+    <p>Roundo only asks for permission once you have a linked friend — before that, nobody can write anything that concerns you.</p>
+    <p>If you declined, the question doesn't come back on its own: turn it back on in your phone's settings.</p>
+    <ul>
+      <li><strong>iPhone</strong> — Settings › Roundo › Notifications</li>
+      <li><strong>Android</strong> — Settings › Apps › Roundo › Notifications. The exact path varies a little by phone maker; look for Roundo in the list of apps.</li>
+    </ul>
 
     <h2 class="section">Reporting a problem</h2>
     <p>A total that looks wrong, a debt that doesn't reach the other side, a screen that freezes: write to us. Include the app version if you can — it's at the bottom of the Account screen.</p>
